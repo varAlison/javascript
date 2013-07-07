@@ -1,0 +1,58 @@
+* {
+	padding: 0;
+	margin: 0;
+	font-family: "Helvetica", "Arial", sans-serif;
+}
+
+body {
+	width: 100%;
+	font-size: 1em;
+	color: #000;
+}
+
+#ticTacToe {
+	width: 50%;
+	height: 50%;
+	margin: 10% auto;
+	text-align: center;
+}
+
+h1, h2 {
+	text-transform: lowercase;
+}
+
+h2 {
+	font-size: 0.8em;
+	font-weight: normal;
+}
+
+#tttBoxWrapper {
+	margin: 10px auto;
+	width: 156px;
+	height: 156px;
+}
+
+#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9{
+	height: 50px;
+	width: 50px;
+	border: 1px solid #ccc;
+	text-align: center;
+	font-size: 2em;
+	float: left;
+	line-height: 50px;
+	background-color: #efefef;
+	color: #4c801f;
+}
+
+#clearFloat {
+	clear: both;
+}
+
+#playAgain {
+	background-color: #5fa027;
+	border: 1px solid #4c801f;
+	padding: 5px 20px;
+	text-transform: lowercase;
+	border-radius: 2px;
+	color: #fff;
+}

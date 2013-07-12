@@ -33,7 +33,7 @@ function boxClicked(boxNumber){
 		turn++;
 		madeMove[boxNumber] = true;
 		boxPlayed++;
-		checkForWinner(content[boxNumber-1]);
+		checkForWinner(content[boxNumber]);
 	} else if (boxPlayed === 9 && winner === false){
 		alert("The game is over!");
 	} else {

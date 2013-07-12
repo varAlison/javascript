@@ -1,7 +1,6 @@
 // global variables
 var madeMove = new Array();
 var content = new Array();
-var winningCombinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 var boxPlayed = 0;
 var winner = false;
 
@@ -17,26 +16,42 @@ window.onload = function(){
 function boxClicked(boxNumber){
 	var whichBox = "box" + boxNumber;
 	var c = document.getElementById(whichBox);
-	if (madeMove[boxNumber-1] === false){
+	if (winner === true){
+		var gameoverClickConfirm = confirm("The game is already over. Would you like to play again?");
+		if (gameoverClickConfirm === true){
+			location.reload(true);
+		}
+	} else if (madeMove[boxNumber-1] === false){
 		c.innerHTML = "X";
 		content[boxNumber-1] = "You";
 		madeMove[boxNumber-1] = true;
 		checkForWinner(content[boxNumber-1]);
 		boxPlayed ++;	
 		computerPlay();	 
+	} else if (boxPlayed === 9 && winner === false){
+		alert("The game is over!");
 	} else {
 		alert("That box is occupied already!");
 	}
-	if (boxPlayed === 9){
-			alert("The game is over!");
-			location.reload(true);
+}
+
+// check for winner
+function checkForWinner(player){
+	var winningCombinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+	for (var j = 0; j < winningCombinations.length; j++){
+		if (content[winningCombinations[j][0]]===player
+			&&content[winningCombinations[j][1]]===player
+			&&content[winningCombinations[j][2]]===player){
+			winner = true;
+			alert(player+ " won!");
 		}
+	}
 }
 
 // computer's play
 function computerPlay(){
 	var computerBoxNumber = Math.floor(Math.random()*9+1);
-	if (madeMove[computerBoxNumber-1] === false){
+	if (madeMove[computerBoxNumber-1] === false && winner === false){
 		var whichBox = "box" + computerBoxNumber; 
 		var c = document.getElementById(whichBox);	
 		c.innerHTML = "O";
@@ -44,27 +59,15 @@ function computerPlay(){
 		madeMove[computerBoxNumber-1] = true;
 		checkForWinner(content[computerBoxNumber-1]);
 		boxPlayed ++;
-	} else {
+	} else if (winner === false){
 		computerPlay();
 	}	
-}
-
-// check for winner
-function checkForWinner(player){
-	for (var j = 0; j < winningCombinations.length; j++){
-		if (content[winningCombinations[j][0]]===player
-			&&content[winningCombinations[j][1]]===player
-			&&content[winningCombinations[j][2]]===player){
-			winner = true;
-			alert(playerMark+ " won!");
-		}
-	}
 }
 
 // play again button
 var playAgain = document.getElementById("playAgain");
 playAgain.onclick = function(){
-	if(boxPlayed < 9){
+	if(boxPlayed < 9 && winner === false){
 		var playAgainConfirm = confirm("The game has not ended.\nAre you sure you want to restart?");
 		if (playAgainConfirm === true){
 			location.reload(true);

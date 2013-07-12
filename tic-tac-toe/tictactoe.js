@@ -1,7 +1,6 @@
 // global variables
 var madeMove = new Array();
 var content = new Array();
-var winningCombinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 var turn = 0;
 var boxPlayed = 0;
 var winner = false;
@@ -18,7 +17,13 @@ window.onload = function(){
 function boxClicked(boxNumber){
 	var whichBox = "box" + boxNumber;
 	var c = document.getElementById(whichBox);
-	if(madeMove[boxNumber-1]===false){
+	if (winner === true){
+		var gameoverClickConfirm = confirm("The game is already over. Would you like to play again?");
+		if (gameoverClickConfirm === true){
+			location.reload(true);
+		}
+	}	
+	if (madeMove[boxNumber-1] === false){
 		if(turn % 2 === 0){
 			c.innerHTML = "X";
 			content[boxNumber-1] = "X";
@@ -30,9 +35,8 @@ function boxClicked(boxNumber){
 		madeMove[boxNumber-1] = true;
 		boxPlayed++;
 		checkForWinner(content[boxNumber-1]);
-		if (boxPlayed === 9){
+		if (boxPlayed === 9 && winner === false){
 			alert("The game is over!");
-			location.reload(true);
 		}
 	} else {
 		alert("Someone has played that box already!");
@@ -40,13 +44,14 @@ function boxClicked(boxNumber){
 }
 
 // check for winner
-function checkForWinner(playerMark){
+function checkForWinner(player){
+	var winningCombinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 	for (var j = 0; j < winningCombinations.length; j++){
-		if (content[winningCombinations[j][0]]===playerMark
-			&&content[winningCombinations[j][1]]===playerMark
-			&&content[winningCombinations[j][2]]===playerMark){
+		if (content[winningCombinations[j][0]]===player
+			&&content[winningCombinations[j][1]]===player
+			&&content[winningCombinations[j][2]]===player){
 			winner = true;
-			alert(playerMark+ " WON!");
+			alert(player+ " WON!");
 		}
 	}
 }

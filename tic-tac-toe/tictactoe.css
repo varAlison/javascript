@@ -32,7 +32,7 @@ h2 {
 	height: 156px;
 }
 
-#box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #box9{
+#box0, #box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8 {
 	height: 50px;
 	width: 50px;
 	border: 1px solid #ccc;

@@ -7,7 +7,7 @@ var winner = false;
 
 // creates 9 properties for the arrays madeMove and content and initializes them to false or empty
 window.onload = function(){
-	for (var i = 0; i <= 9; i++) {
+	for (var i = 0; i < 9; i++) {
 	madeMove[i] = false;
 	content[i] ='';
 	}
@@ -22,22 +22,20 @@ function boxClicked(boxNumber){
 		if (gameoverClickConfirm === true){
 			location.reload(true);
 		}
-	}	
-	if (madeMove[boxNumber-1] === false){
-		if(turn % 2 === 0){
+	} else if (madeMove[boxNumber] === false){
+		if (turn % 2 === 0){
 			c.innerHTML = "X";
-			content[boxNumber-1] = "X";
+			content[boxNumber] = "X";
 		} else {
 			c.innerHTML = "O";
-			content[boxNumber-1] = "0";
+			content[boxNumber] = "O";
 		}
 		turn++;
-		madeMove[boxNumber-1] = true;
+		madeMove[boxNumber] = true;
 		boxPlayed++;
 		checkForWinner(content[boxNumber-1]);
-		if (boxPlayed === 9 && winner === false){
-			alert("The game is over!");
-		}
+	} else if (boxPlayed === 9 && winner === false){
+		alert("The game is over!");
 	} else {
 		alert("Someone has played that box already!");
 	}	

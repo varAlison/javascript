@@ -6,7 +6,7 @@ var winner = false;
 
 // creates 9 properties for the arrays madeMove and content and initializes them to false or empty
 window.onload = function(){
-	for (var i = 0; i <= 9; i++) {
+	for (var i = 0; i < 9; i++) {
 	madeMove[i] = false;
 	content[i] ='';
 	}
@@ -21,11 +21,11 @@ function boxClicked(boxNumber){
 		if (gameoverClickConfirm === true){
 			location.reload(true);
 		}
-	} else if (madeMove[boxNumber-1] === false){
+	} else if (madeMove[boxNumber] === false){
 		c.innerHTML = "X";
-		content[boxNumber-1] = "You";
-		madeMove[boxNumber-1] = true;
-		checkForWinner(content[boxNumber-1]);
+		content[boxNumber] = "You";
+		madeMove[boxNumber] = true;
+		checkForWinner(content[boxNumber]);
 		boxPlayed ++;	
 		computerPlay();	 
 	} else if (boxPlayed === 9 && winner === false){
@@ -50,14 +50,14 @@ function checkForWinner(player){
 
 // computer's play
 function computerPlay(){
-	var computerBoxNumber = Math.floor(Math.random()*9+1);
-	if (madeMove[computerBoxNumber-1] === false && winner === false){
+	var computerBoxNumber = Math.floor(Math.random()*8);
+	if (madeMove[computerBoxNumber] === false && winner === false){
 		var whichBox = "box" + computerBoxNumber; 
 		var c = document.getElementById(whichBox);	
 		c.innerHTML = "O";
-		content[computerBoxNumber-1] = "Computer";
-		madeMove[computerBoxNumber-1] = true;
-		checkForWinner(content[computerBoxNumber-1]);
+		content[computerBoxNumber] = "Computer";
+		madeMove[computerBoxNumber] = true;
+		checkForWinner(content[computerBoxNumber]);
 		boxPlayed ++;
 	} else if (winner === false){
 		computerPlay();
